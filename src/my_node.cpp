@@ -29,5 +29,5 @@ void MyNode::_process(double delta)
 
 godot::String MyNode::hello_node()
 {
-	return "Hello GDExtension Node\n";
+	return "Hello GDExtension Node Rioni\n";
 }

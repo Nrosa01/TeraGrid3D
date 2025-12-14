@@ -2,13 +2,26 @@
 import os
 from glob import glob
 from pathlib import Path
+# To get rid of linting errors
+from SCons.Script import (
+    VariantDir,
+    SConscript,
+    Glob,
+    CacheDir,
+    Environment,
+    Default
+)
 
 # TODO: Do not copy environment after godot-cpp/test is updated <https://github.com/godotengine/godot-cpp/blob/master/test/SConstruct>.
 env = SConscript("godot-cpp/SConstruct")
 
-# Add source files.
+# Build directory for object files
+build_dir = "build/tmp"
+VariantDir(build_dir, "src", duplicate=0)
+
+# Add source files (from variant dir)
 env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
+sources = Glob(build_dir + "/*.cpp")
 
 # Find gdextension path even if the directory or extension is renamed (e.g. project/addons/example/example.gdextension).
 (extension_path,) = glob("project/addons/*/*.gdextension")
@@ -24,7 +37,7 @@ if scons_cache_path != None:
     CacheDir(scons_cache_path)
     print("Scons cache enabled... (path: '" + scons_cache_path + "')")
 
-# Create the library target (e.g. libexample.linux.debug.x86_64.so).
+# Create the library target (e.g. libteragrid3d.linux.debug.x86_64.so).
 debug_or_release = "release" if env["target"] == "template_release" else "debug"
 if env["platform"] == "macos":
     library = env.SharedLibrary(

@@ -30,5 +30,5 @@ MySingleton::~MySingleton()
 
 void MySingleton::hello_singleton(godot::Label *label)
 {
-	label->set_text(label->get_text() + "Hello GDExtension Singleton!\n");
+	label->set_text(label->get_text() + "Hello GDExtension Singleton! Rioni\n");
 }
