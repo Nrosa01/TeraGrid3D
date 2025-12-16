@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Editor",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "godot.exe",
+      "args": [
+        "--path",
+        "project/",
+        "--editor"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false,
+      "preLaunchTask": "build-debug"
+    },
+    {
+      "name": "Debug Runtime",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "godot.exe",
+      "args": [
+        "--path",
+        "project/",
+        "--editor"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false,
+      "preLaunchTask": "build-debug"
+    }
+  ]
+}
